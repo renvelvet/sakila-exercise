@@ -1,0 +1,46 @@
+No. 1
+SELECT \* FROM sakila.film;
+
+No. 2
+SELECT \* FROM sakila.actor
+WHERE last_name = "HOPPER";
+
+No. 3
+SELECT \* FROM sakila.film
+ORDER BY length;
+
+No. 4
+SELECT \* FROM sakila.customer
+WHERE first_name LIKE '%CE%';
+
+No. 5
+SELECT \* FROM sakila.payment
+WHERE amount > 5.00;
+
+No. 6
+SELECT city_id, city, country FROM sakila.city
+INNER JOIN sakila.country
+ON sakila.city.country_id = sakila.country.country_id
+WHERE sakila.country.country_id = 44;
+
+No. 7
+SELECT film.film_id, film.title, film_category.category_id, category.name FROM ((sakila.film_category
+INNER JOIN sakila.film ON sakila.film.film_id = sakila.film_category.film_id)
+INNER JOIN sakila.category ON sakila.film_category.category_id = sakila.category.category_id)
+WHERE sakila.category.name = 'Drama';
+
+No. 8
+SELECT film.film_id, film.title, film_category.category_id, film.rating, category.name FROM ((sakila.film_category
+INNER JOIN sakila.film ON sakila.film.film_id = sakila.film_category.film_id)
+INNER JOIN sakila.category ON sakila.film_category.category_id = sakila.category.category_id)
+WHERE (sakila.category.name = 'Action') AND (sakila.film.rating = "PG");
+
+No. 9
+SELECT COUNT(customer_id) FROM sakila.customer
+WHERE store_id=1;
+
+No. 10
+SELECT customer.first_name, customer.last_name, country.country FROM ((sakila.address INNER JOIN sakila.customer ON sakila.customer.address_id = sakila.address.address_id)
+INNER JOIN sakila.city ON sakila.address.city_id = sakila.city.city_id)
+INNER JOIN sakila.country ON sakila.city.country_id = sakila.country.country_id
+WHERE first_name="BERNICE" AND last_name="WILLIS";

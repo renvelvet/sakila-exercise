@@ -40,7 +40,7 @@ SELECT COUNT(customer_id) FROM sakila.customer
 WHERE store_id=1;
 
 No. 10
-SELECT customer.first_name, customer.last_name, country.country FROM ((sakila.address INNER JOIN sakila.customer ON sakila.customer.address_id = sakila.address.address_id)
+SELECT concat(customer.first_name,' ',customer.last_name) AS name, country.country FROM ((sakila.address INNER JOIN sakila.customer ON sakila.customer.address_id = sakila.address.address_id)
 INNER JOIN sakila.city ON sakila.address.city_id = sakila.city.city_id)
 INNER JOIN sakila.country ON sakila.city.country_id = sakila.country.country_id
 WHERE first_name="BERNICE" AND last_name="WILLIS";
